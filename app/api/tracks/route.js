@@ -27,7 +27,7 @@ export async function POST(request) {
     const price = Math.max(0, Number(form.get('price') || 0));
     if (!title || !artist || !audio || typeof audio === 'string') throw new Error('Artist, title, and an audio file are required.');
     if (!audio.type.startsWith('audio/')) throw new Error('Please select an MP3, WAV, M4A, or other audio file.');
-    if (audio.size > 100 * 1024 * 1024) throw new Error('Audio files must be 100 MB or smaller for this test release.');
+    if (audio.size > 50 * 1024 * 1024) throw new Error('Audio files must be 50 MB or smaller for this test release.');
     const audioUrl = await storeFile(audio, 'audio', user.id);
     let artworkUrl = null;
     if (artwork && typeof artwork !== 'string' && artwork.size) {
